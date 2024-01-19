@@ -1,0 +1,106 @@
+/* GENERAL RULES*/
+
+/* Titles*/
+
+h1 {
+  font-size: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  font-size: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+p {
+  margin: 10px 0;
+}
+
+/* Other rules*/
+
+body {
+  background-color: #f3f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.popular {
+  color: orange;
+}
+
+img {
+  border-radius: 5px;
+}
+
+/*HEADER*/
+
+header {
+  height: 60px;
+  border-bottom: 1px solid gray;
+  padding: 10px 0;
+  background-color: white;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  height: auto;
+  width: 150px;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+/*HERO*/
+
+.hero {
+  background-color: white;
+}
+
+.hero img {
+  height: 200px;
+  width: 350px;
+}
+
+.hero-container {
+  display: flex;
+}
+
+/*MAIN*/
+
+.main-left {
+  max-width: 820px;
+}
+
+article {
+  width: calc(50% - 10px);
+  /* border: solid red; */
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+article:not(:nth-child(even)) {
+  margin-right: 20px;
+}
+
+article img {
+  height: 100px;
+}
+
+.meals-container {
+  display: flex;
+  flex-wrap: wrap;
+}
