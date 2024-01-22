@@ -79,13 +79,26 @@ header {
 
 /*MAIN*/
 
+main {
+  display: flex;
+}
+
 .main-left {
   max-width: 820px;
 }
 
+.main-right {
+  flex: 1;
+  /* height: 100px; */
+  border: solid green 2px;
+  position: sticky;
+  top: 30px;
+  align-self: flex-start;
+}
+
 article {
   width: calc(50% - 10px);
-  /* border: solid red; */
+  border: solid red;
   box-sizing: border-box;
   margin-bottom: 20px;
   background-color: white;

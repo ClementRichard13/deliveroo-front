@@ -11,6 +11,7 @@ import Header from "./components/Header";
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +24,40 @@ function App() {
     };
     fetchData();
   }, []);
+
+  let total = 0;
+
+  const addToCart = (meal) => {
+    const newCart = [...cart];
+
+    const mealExists = newCart.find((elem) => elem.id === meal.id);
+
+    // console.log(mealExists);
+
+    if (mealExists) {
+      mealExists.quantity++;
+    } else {
+      const newMeal = { ...meal, quantity: 1 };
+      newCart.push(newMeal);
+    }
+
+    setCart(newCart);
+  };
+
+  const removeFromCart = (meal) => {
+    const newCart = [...cart];
+
+    const mealInTab = newCart.find((elem) => elem.id === meal.id);
+    if (mealInTab.quantity === 1) {
+      const index = newCart.indexOf(mealInTab);
+      newCart.splice(index, 1);
+    } else {
+      mealInTab.quantity--;
+    }
+
+    setCart(newCart);
+  };
+
   return isLoading ? (
     <span>En cours de chargement</span>
   ) : (
@@ -44,10 +79,41 @@ function App() {
           {data.categories.map((category, index) => {
             return (
               category.meals.length > 0 && (
-                <Category category={category} key={index} />
+                <Category
+                  category={category}
+                  key={index}
+                  addToCart={addToCart}
+                />
               )
             );
           })}
+        </div>
+        <div className="main-right">
+          {cart.map((meal, index) => {
+            total += meal.quantity * meal.price;
+            return (
+              <div key={meal.id}>
+                <button
+                  onClick={() => {
+                    removeFromCart(meal);
+                  }}
+                >
+                  -
+                </button>
+                <span>{meal.quantity}</span>
+                <button
+                  onClick={() => {
+                    addToCart(meal);
+                  }}
+                >
+                  +
+                </button>
+                <span>{meal.title}</span>
+                <span>{meal.price * meal.quantity} €</span>
+              </div>
+            );
+          })}
+          <p>Total : {total.toFixed(2)}</p>
         </div>
       </main>
     </div>
